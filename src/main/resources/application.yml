@@ -1,0 +1,27 @@
+spring:
+  main:
+    banner-mode: off
+    log-startup-info: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/kotlin_api
+    schema: classpath:schema.sql
+    sql-script-encoding: utf-8
+    username: root
+    password:
+  jpa:
+    database: mysql
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+  output:
+    ansi:
+      enabled: always
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
