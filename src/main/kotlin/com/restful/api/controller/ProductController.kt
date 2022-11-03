@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+/**
+ * 商品コントローラー
+ *
+ * @author yanaokahiroki
+ */
 @RestController
 @RequestMapping("api/v1/products")
 class ProductController(private val productServiceImpl: ProductServiceImpl) {
@@ -25,9 +30,8 @@ class ProductController(private val productServiceImpl: ProductServiceImpl) {
   fun findAll(): ResponseEntity<List<ProductDto>> = ResponseEntity(productServiceImpl.findAll(), HttpStatus.OK)
 
   @GetMapping("{id}")
-  fun find(@PathVariable id: Int): ResponseEntity<ProductDto> {
-    return ResponseEntity(productServiceImpl.find(id), HttpStatus.OK)
-  }
+  fun find(@PathVariable id: Int): ResponseEntity<ProductDto> =
+    ResponseEntity(productServiceImpl.find(id), HttpStatus.OK)
 
   @PostMapping("{id}")
   fun update(@PathVariable id: Int, @RequestBody productRequestBody: ProductForm): ResponseEntity<ProductDto> =
