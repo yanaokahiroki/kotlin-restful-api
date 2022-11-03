@@ -7,7 +7,6 @@ import com.restful.api.form.ProductForm
 import com.restful.api.model.Product
 import com.restful.api.repository.ProductRepository
 import org.springframework.stereotype.Service
-import java.util.Optional
 
 /**
  * 商品サービス
@@ -55,11 +54,6 @@ class ProductServiceImpl(private val productRepository: ProductRepository) : Pro
    * @param id 商品ID
    * @return 商品情報
    */
-  private fun findById(id: Int): Product {
-    val product: Optional<Product> = productRepository.findById(id)
-    if (product.isEmpty) {
-      throw NotFoundException("指定されたIDの商品は存在しません。ID:${id}")
-    }
-    return product.get()
-  }
+  private fun findById(id: Int): Product =
+    productRepository.findById(id).orElseThrow { NotFoundException("指定されたIDの商品は存在しません。ID:${id}") }
 }
