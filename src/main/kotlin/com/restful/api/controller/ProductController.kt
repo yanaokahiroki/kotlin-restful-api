@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+/**
+ * 商品コントローラー
+ *
+ * @author yanaokahiroki
+ */
 @RestController
 @RequestMapping("api/v1/products")
 class ProductController(private val productServiceImpl: ProductServiceImpl) {
