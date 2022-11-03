@@ -25,9 +25,8 @@ class ProductController(private val productServiceImpl: ProductServiceImpl) {
   fun findAll(): ResponseEntity<List<ProductDto>> = ResponseEntity(productServiceImpl.findAll(), HttpStatus.OK)
 
   @GetMapping("{id}")
-  fun find(@PathVariable id: Int): ResponseEntity<ProductDto> {
-    return ResponseEntity(productServiceImpl.find(id), HttpStatus.OK)
-  }
+  fun find(@PathVariable id: Int): ResponseEntity<ProductDto> =
+    ResponseEntity(productServiceImpl.find(id), HttpStatus.OK)
 
   @PostMapping("{id}")
   fun update(@PathVariable id: Int, @RequestBody productRequestBody: ProductForm): ResponseEntity<ProductDto> =
