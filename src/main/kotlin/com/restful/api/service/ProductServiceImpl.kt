@@ -1,11 +1,12 @@
 package com.restful.api.service
 
 import com.restful.api.dto.ProductDto
+import com.restful.api.exception.BadRequestException
+import com.restful.api.exception.NotFoundException
 import com.restful.api.form.ProductForm
 import com.restful.api.model.Product
 import com.restful.api.repository.ProductRepository
 import org.springframework.stereotype.Service
-import java.util.Optional
 
 /**
  * 商品サービス
@@ -17,7 +18,8 @@ class ProductServiceImpl(private val productRepository: ProductRepository) : Pro
 
   @Override
   override fun registerProduct(productRequestBody: ProductForm): ProductDto {
-    productRepository.findByTitle(productRequestBody.title)?.let { throw Exception("すでに登録済みのタイトルです") }
+    productRepository.findByTitle(productRequestBody.title)
+      ?.let { throw BadRequestException("登録済みのタイトルです。タイトル=${productRequestBody.title}") }
     val product = Product(productRequestBody.title, productRequestBody.body, productRequestBody.price)
     return ProductDto(productRepository.save(product))
   }
@@ -52,11 +54,6 @@ class ProductServiceImpl(private val productRepository: ProductRepository) : Pro
    * @param id 商品ID
    * @return 商品情報
    */
-  private fun findById(id: Int): Product {
-    val product: Optional<Product> = productRepository.findById(id)
-    if (product.isEmpty) {
-      throw Exception("IDの商品はありません。")
-    }
-    return product.get()
-  }
+  private fun findById(id: Int): Product =
+    productRepository.findById(id).orElseThrow { NotFoundException("指定されたIDの商品は存在しません。ID:${id}") }
 }
