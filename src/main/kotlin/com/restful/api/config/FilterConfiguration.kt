@@ -15,7 +15,7 @@ import org.springframework.core.Ordered
 class FilterConfiguration {
   @Bean
   fun filterRegistrationBean(): FilterRegistrationBean<LoggingFilter> {
-    val bean = FilterRegistrationBean<LoggingFilter>()
+    val bean = FilterRegistrationBean(LoggingFilter())
     bean.addUrlPatterns("/api/v1/*")
     bean.order = Ordered.HIGHEST_PRECEDENCE
     return bean
