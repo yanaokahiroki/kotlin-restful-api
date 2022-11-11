@@ -7,6 +7,11 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
+/**
+ * ログフィルター
+ *
+ * @author yanaokahiroki
+ */
 class LoggingFilter : OncePerRequestFilter() {
   private val log = LoggerFactory.getLogger(LoggingFilter::class.java)
 
