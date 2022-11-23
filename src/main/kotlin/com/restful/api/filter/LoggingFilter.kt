@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletResponse
 /**
  * ログフィルター
  *
+ * 参考
+ * - [SpringBootでリクエスト／レスポンス情報をログに出力するFilter実装](https://yamakisso.hatenablog.com/entry/2022/02/18/034224)
+ * - [Spring Boot + Kotlin で RESTful API のログ出力](https://qiita.com/oskamathis/items/2e94e7572e9b971236b3)
+ *
  * @author yanaokahiroki
  */
 class LoggingFilter : OncePerRequestFilter() {
